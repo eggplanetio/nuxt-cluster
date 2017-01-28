@@ -1,6 +1,6 @@
 {
   "name": "nuxt-cluster",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A production ready nuxt server.",
   "main": "index.js",
   "scripts": {

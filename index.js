@@ -2,14 +2,8 @@ const cluster = require('cluster');
 const path = require('path');
 const numCPUs = require('os').cpus().length;
 
-const port = process.env.PORT || 3000
-const config = require(path.join(process.cwd(), 'nuxt.config.js'));
-
-config.dev = false;
-config.srcDir = process.env.SRC_DIR || process.cwd();
-
 module.exports = {
-  start () {
+  start ({ srcDir, port }) {
     if (cluster.isMaster) {
       console.log(`master ${process.pid} is running`);
 
@@ -22,6 +16,11 @@ module.exports = {
         console.log(`worker ${worker.process.pid} died`);
       });
     } else {
+      const config = require(path.join(process.cwd(), 'nuxt.config.js'));
+      config.port = port || process.env.PORT || 3000;
+      config.dev = false;
+      config.srcDir = srcDir || process.env.SRC_DIR || process.cwd();
+
       const Nuxt = require('nuxt');
       const morgan = require('morgan');
       const app = require('express')();
