@@ -7,13 +7,14 @@
 ## Installation
 
 ```sh
-yarn add nuxt-cluster --save
+npm install nuxt-cluster --save
 ```
 
 ## Usage
 
 ```js
-const server = require('nuxt-cluster');
+import server from 'nuxt-cluster'
+
 server.start({
   dev: false,
   workers: 2,
@@ -22,7 +23,7 @@ server.start({
   rootDir: '/app/',
   address: '0.0.0.0',
   port: 3000,
-});
+})
 ```
 
 ## Options
@@ -45,7 +46,7 @@ If set to a value greater then 0, each worker will be gracefully restarted after
 ### `workerMaxLifetime`
 - Default: ` `
 
-If set to a value greater then 0, each worker will be gracefully restarted after it has been alive this many seconds. 
+If set to a value greater then 0, each worker will be gracefully restarted after it has been alive this many seconds.
 
 ### `rootDir`
 - Default: ` `
